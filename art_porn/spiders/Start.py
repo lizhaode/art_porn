@@ -21,7 +21,7 @@ class BaseSpider(scrapy.Spider):
     def parse(self, response: HtmlResponse, **kwargs):
         if response.json().get('status') == 'success':
             for category in self.settings.getlist('CATEGORY'):
-                yield scrapy.Request(url='https://theartporn.com/categories/{0}'.format(category),
+                yield scrapy.Request(url='https://theartporn.com/categories/{0}/'.format(category),
                                      callback=self.categories_parse, cb_kwargs={'category': category})
 
     def categories_parse(self, response: HtmlResponse, category):
