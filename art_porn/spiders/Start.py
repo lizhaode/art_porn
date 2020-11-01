@@ -27,9 +27,11 @@ class BaseSpider(scrapy.Spider):
     def categories_parse(self, response: HtmlResponse, category):
         next_url_list = response.css('a.button.prev::attr(href)').getall()
         if len(next_url_list) > 1:
-            yield scrapy.Request(url=response.urljoin(next_url_list[1]), callback=self.categories_parse)
+            yield scrapy.Request(url=response.urljoin(next_url_list[1]), callback=self.categories_parse,
+                                 cb_kwargs={'category': category})
         else:
-            yield scrapy.Request(url=response.urljoin(next_url_list[0]), callback=self.categories_parse)
+            yield scrapy.Request(url=response.urljoin(next_url_list[0]), callback=self.categories_parse,
+                                 cb_kwargs={'category': category})
 
         for item in response.css('div.thumb-video.cf').css('a.thumb-video-link::attr(href)').getall():
             yield scrapy.Request(url=item, callback=self.video_parse, cb_kwargs={'category': category})
