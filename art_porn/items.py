@@ -12,3 +12,4 @@ class ArtPornItem(scrapy.Item):
     name = scrapy.Field()
     link = scrapy.Field()
     category = scrapy.Field()
+    cookie = scrapy.Field()

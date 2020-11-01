@@ -21,8 +21,8 @@ RETRY_TIMES = 10
 RETRY_HTTP_CODES = [500, 503, 504, 400, 403, 408]
 
 ARIA_TOKEN = ''
-USER = ''
-PASS = ''
+USER = 'Cranberry'
+PASS = 'Fudgest1ck'
 CATEGORY = ['asian', 'high-heels', 'lingerie', 'mask', 'pantyhose', 'slim', 'stockings']
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
