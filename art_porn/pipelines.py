@@ -17,7 +17,8 @@ class ArtPornPipeline:
         base_url = 'http://127.0.0.1:8900/jsonrpc'
         token = 'token:' + spider.settings.get('ARIA_TOKEN')
         if isinstance(item, ArtPornItem):
-            headers = random_other_headers().append(item['cookie'])
+            headers = random_other_headers()
+            headers.append(item['cookie'])
             download_data = {
                 'jsonrpc': '2.0',
                 'method': 'aria2.addUri',
