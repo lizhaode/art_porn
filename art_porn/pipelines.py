@@ -21,9 +21,9 @@ class ArtPornPipeline:
                 'jsonrpc': '2.0',
                 'method': 'aria2.addUri',
                 'id': '0',
-                'params': [token, [item['download_url']],
+                'params': [token, [item['link']],
                            {
-                               'out': item['title'] + '.mp4',
+                               'out': item['name'] + '.mp4',
                                'header': random_other_headers(),
                                'dir': '/opt/videos/{0}'.format(item['category'])
                            }]
