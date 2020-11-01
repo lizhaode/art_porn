@@ -41,6 +41,7 @@ class BaseSpider(scrapy.Spider):
         for item in response.css('ul.video-downloads-buttons').css('li'):
             if '1080p' in item.css('a::text').get().strip():
                 link = item.css('a::attr(href)').get()
+                req_cookie = response.request.headers.get('Cookie').decode()
                 resp_cookie = response.headers.get('Set-Cookie').decode().split(';')[0]
                 yield ArtPornItem(name=title, link=link, category=category,
-                                  cookie=response.request.headers.get('Cookie').decode() + resp_cookie)
+                                  cookie='{0};{1}'.format(req_cookie, resp_cookie))
