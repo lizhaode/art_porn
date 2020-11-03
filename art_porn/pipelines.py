@@ -46,8 +46,8 @@ class HotPipeline:
                 'params': [token, [item['link']],
                            {
                                'out': item['name'] + '.mp4',
-                               'header': ['Authorization: ' + spider.settings.get('DEFAULT_REQUEST_HEADERS').get(
-                                   'Authorization')],
+                               'header': 'Authorization: ' + spider.settings.get('DEFAULT_REQUEST_HEADERS').get(
+                                   'Authorization'),
                                'dir': '/opt/videos/{0}'.format(item['category'])
                            }]
             }
