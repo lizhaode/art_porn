@@ -35,4 +35,5 @@ class BaseSpider(scrapy.Spider):
             if i:
                 title = i
                 break
-        yield HotItem(name=title, link=link, category=category)
+        if link != 'http://www.hotwiferio.com/members/':
+            yield HotItem(name=title, link=link, category=category)
