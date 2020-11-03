@@ -7,7 +7,7 @@
 # useful for handling different item types with a single interface
 import requests
 
-from art_porn.items import ArtPornItem
+from art_porn.items import ArtPornItem, HotItem
 from art_porn.lib.download_header import random_other_headers
 from art_porn.spiders.Start import BaseSpider
 
@@ -27,6 +27,27 @@ class ArtPornPipeline:
                            {
                                'out': item['name'] + '.mp4',
                                'header': headers,
+                               'dir': '/opt/videos/{0}'.format(item['category'])
+                           }]
+            }
+            requests.post(url=base_url, json=download_data)
+        return item
+
+
+class HotPipeline:
+    def process_item(self, item, spider: BaseSpider):
+        base_url = 'http://127.0.0.1:8900/jsonrpc'
+        token = 'token:' + spider.settings.get('ARIA_TOKEN')
+        if isinstance(item, HotItem):
+            download_data = {
+                'jsonrpc': '2.0',
+                'method': 'aria2.addUri',
+                'id': '0',
+                'params': [token, [item['link']],
+                           {
+                               'out': item['name'] + '.mp4',
+                               'header': ['Authorization: ' + spider.settings.get('DEFAULT_REQUEST_HEADERS').get(
+                                   'Authorization')],
                                'dir': '/opt/videos/{0}'.format(item['category'])
                            }]
             }

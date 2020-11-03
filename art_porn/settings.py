@@ -54,6 +54,7 @@ DEFAULT_REQUEST_HEADERS = {
     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,'
               'application/signed-exchange;v=b3;q=0.9',
     'Accept-Language': 'zh-CN,zh;q=0.9',
+    'Authorization': 'Basic c2NvdHQ2OTo2MzY0c3ds'
 }
 
 # Enable or disable spider middlewares
@@ -78,6 +79,7 @@ DEFAULT_REQUEST_HEADERS = {
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
     'art_porn.pipelines.ArtPornPipeline': 300,
+    'art_porn.pipelines.HotPipeline': 301
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
